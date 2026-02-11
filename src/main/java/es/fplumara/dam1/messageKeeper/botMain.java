@@ -6,8 +6,8 @@ import es.fplumara.dam1.messageKeeper.services.files.DefaultFileService;
 public class botMain {
     public static void main(String[] args) throws Exception{
         AppConfig config = new AppConfig();
-        DefaultFileService FileService = new DefaultFileService(config);
-        String Token =
+
+
 
 
     }

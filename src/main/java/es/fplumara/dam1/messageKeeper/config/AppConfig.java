@@ -76,8 +76,8 @@ public void setLogsEnabled(boolean logsEnabled) {
     private void save() {
         try (FileOutputStream fos = new FileOutputStream(CONFIG_FILE)) {
             properties.store(fos, "Actualizado por el bot");
-        } catch (IOException e){
-            System.err.println("You can not save the document");
+        } catch (IOException e) {
+            System.err.println("No se puede guardar la configuración. " + e.getMessage());
         }
     }
     }
