@@ -3,6 +3,7 @@ package es.fplumara.dam1.messageKeeper.services.files;
 import es.fplumara.dam1.messageKeeper.model.LogEntry;
 import es.fplumara.dam1.messageKeeper.exceptions.StoreException;
 
+import javax.script.SimpleBindings;
 import java.io.IOException;
 import java.nio.file.*;
 import java.time.format.DateTimeFormatter;
@@ -28,15 +29,32 @@ public class TxtLogStore implements LogStore {
             if (!Files.exists(path)) return List.of();
             return Files.readAllLines(path);
         } catch (IOException e) {
-            throw new StoreException("Error reading TXT log: " + e.getMessage());
+            throw new StoreException("Error al leer el registro TXT: " + e.getMessage());
         }
     }
+    public  List<String> readLast(Path path, int n) throws StoreException{
+        List<String> alll = readAll(path);
+        int from = Math.max(alll.size() - n , 0);
+        return alll.subList(from, alll.size()); //returns a view
 
-    @Override
-    public List<String> readLast(Path path, int n) throws StoreException {
-        List<String> all = readAll(path);
-        int from = Math.max(all.size() - n, 0);
-        return all.subList(from, all.size());
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*    @Override
+
+        return all.subList(from, all.size());
+    }*/

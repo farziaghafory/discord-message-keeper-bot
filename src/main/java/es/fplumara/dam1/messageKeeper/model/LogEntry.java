@@ -10,4 +10,8 @@ public class LogEntry {
     public Object author() {
         return null;
     }
+
+    public Object content() {
+        return null;
+    }
 }
