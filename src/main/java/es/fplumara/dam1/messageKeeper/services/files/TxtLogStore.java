@@ -3,12 +3,10 @@ package es.fplumara.dam1.messageKeeper.services.files;
 import es.fplumara.dam1.messageKeeper.model.LogEntry;
 import es.fplumara.dam1.messageKeeper.exceptions.StoreException;
 
-import javax.script.SimpleBindings;
 import java.io.IOException;
 import java.nio.file.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TxtLogStore implements LogStore {
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -17,7 +15,7 @@ public class TxtLogStore implements LogStore {
     public void append(Path path, LogEntry entry) throws StoreException {
         try {
             Files.createDirectories(path.getParent());
-            String line = entry.timestamp().format(String.valueOf(FORMAT)) + " | " + entry.author() + " | " + entry.content();
+            String line = entry.timestamp().format(DateTimeFormatter.ofPattern(String.valueOf(FORMAT) + entry.author() + entry.content())); // requires a formatter can not do format(String.valueOf(FORMAT) + entry.author() + entry.content() passing a String
             Files.writeString(path, line + System.lineSeparator(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -40,21 +38,3 @@ public class TxtLogStore implements LogStore {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*    @Override
-
-        return all.subList(from, all.size());
-    }*/
