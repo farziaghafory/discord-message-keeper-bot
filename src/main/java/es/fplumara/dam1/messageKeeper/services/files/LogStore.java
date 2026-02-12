@@ -11,5 +11,7 @@ public interface LogStore {
 
     List<String> readAll(Path path) throws StoreException;
 
+    List<String> readLast(Path path, int n) throws StoreException;
+
     ;
 }
