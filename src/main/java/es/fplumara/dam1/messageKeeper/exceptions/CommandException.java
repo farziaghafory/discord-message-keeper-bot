@@ -1,7 +1,12 @@
 package es.fplumara.dam1.messageKeeper.exceptions;
 
-public class CommandException {
+public class CommandException extends Exception {
+
     public CommandException(String message) {
-        super();
+        super(message);
+    }
+
+    public CommandException(String message, Throwable cause) {
+        super(message, cause);
     }
 }
